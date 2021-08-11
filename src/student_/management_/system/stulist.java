@@ -33,9 +33,9 @@ public class stulist extends JFrame implements ActionListener  {
     private JScrollPane scroll;
     private DefaultTableModel model;
     private Container c;
-    private JLabel label, idLabel, firstNameLabel, lastNameLabel, phoneLabel;
-    private JTextField tfId, tfName1, tfName2, tfPhone;
-    private JButton addButton, updateButton, deleteButton, preAdvisingButton,txtButton;
+    private JLabel label, nameLabel, idLabel, phnLabel, deptLabel;
+    private JTextField tfname, tfid, tfphn, tfdept;
+    private JButton addButton, updateButton, deleteButton, clearButton,txtButton;
     
     private String[] columns = {"Name","ID","PHONE","DEPARTMENT"};
     
@@ -64,15 +64,15 @@ public class stulist extends JFrame implements ActionListener  {
          label.setBounds(140,10,250,50);
          c.add( label);
          
-         idLabel = new JLabel("Name   ");
-         idLabel.setFont(font);
-         idLabel.setBounds(10,80,140,30);
-         c.add( idLabel);
+         nameLabel = new JLabel("Name   ");
+         nameLabel.setFont(font);
+         nameLabel.setBounds(10,80,140,30);
+         c.add( nameLabel);
          
-         tfId = new JTextField();
-         tfId.setFont(font);
-         tfId.setBounds(110,80,200,30);
-         c.add( tfId);
+         tfname = new JTextField();
+         tfname.setFont(font);
+         tfname.setBounds(110,80,200,30);
+         c.add( tfname);
          
          addButton = new JButton("Add");
          addButton.setFont(font);
@@ -82,15 +82,15 @@ public class stulist extends JFrame implements ActionListener  {
          
          
          
-         firstNameLabel = new JLabel("ID   ");
-         firstNameLabel.setFont(font);
-         firstNameLabel.setBounds(10,130,150,30);
-         c.add( firstNameLabel);
+         idLabel = new JLabel("ID   ");
+         idLabel.setFont(font);
+         idLabel.setBounds(10,130,150,30);
+         c.add( idLabel);
          
-         tfName1 = new JTextField();
-         tfName1.setFont(font);
-         tfName1.setBounds(110,130,200,30);
-         c.add( tfName1);
+         tfid = new JTextField();
+         tfid.setFont(font);
+         tfid.setBounds(110,130,200,30);
+         c.add( tfid);
          
          updateButton = new JButton("Update");
          updateButton.setFont(font);
@@ -98,15 +98,15 @@ public class stulist extends JFrame implements ActionListener  {
          c.add( updateButton);
          
          
-          lastNameLabel = new JLabel("Phone   ");
-         lastNameLabel.setFont(font);
-         lastNameLabel.setBounds(10,180,150,30);
-         c.add( lastNameLabel);
+          phnLabel = new JLabel("Phone   ");
+         phnLabel.setFont(font);
+         phnLabel.setBounds(10,180,150,30);
+         c.add( phnLabel);
          
-         tfName2 = new JTextField();
-         tfName2.setFont(font);
-         tfName2.setBounds(110,180,200,30);
-         c.add( tfName2);
+         tfphn = new JTextField();
+         tfphn.setFont(font);
+         tfphn.setBounds(110,180,200,30);
+         c.add( tfphn);
          
          deleteButton = new JButton("Delete");
          deleteButton.setFont(font);
@@ -114,20 +114,20 @@ public class stulist extends JFrame implements ActionListener  {
          c.add( deleteButton);
          
          
-          phoneLabel = new JLabel("Department");
-         phoneLabel.setFont(font);
-         phoneLabel.setBounds(10,230,150,30);
-         c.add( phoneLabel);
+          deptLabel = new JLabel("Department");
+         deptLabel.setFont(font);
+         deptLabel.setBounds(10,230,150,30);
+         c.add( deptLabel);
          
-         tfPhone = new JTextField();
-         tfPhone.setFont(font);
-         tfPhone.setBounds(110,230,200,30);
-         c.add( tfPhone);
+         tfdept = new JTextField();
+         tfdept.setFont(font);
+         tfdept.setBounds(110,230,200,30);
+         c.add( tfdept);
          
-         preAdvisingButton = new JButton("Clear");
-         preAdvisingButton.setFont(font);
-         preAdvisingButton.setBounds(400,230,100,30);
-         c.add( preAdvisingButton);
+         clearButton = new JButton("Clear");
+         clearButton.setFont(font);
+         clearButton.setBounds(400,230,100,30);
+         c.add( clearButton);
          
          
           txtButton = new JButton("Save");
@@ -186,7 +186,7 @@ public class stulist extends JFrame implements ActionListener  {
          c.add(scroll);
          
          addButton.addActionListener(this);
-         preAdvisingButton.addActionListener(this);
+         clearButton.addActionListener(this);
          deleteButton.addActionListener(this);
          updateButton.addActionListener(this);
          
@@ -202,10 +202,10 @@ public class stulist extends JFrame implements ActionListener  {
                 String Phone = model.getValueAt(numberOfRow, 2).toString();
                 String Department = model.getValueAt(numberOfRow, 3).toString();
                  
-                tfId.setText(Name);
-                 tfName1.setText(ID);
-                 tfName2 .setText(Phone);
-                  tfPhone .setText(Department);
+                tfname.setText(Name);
+                 tfid.setText(ID);
+                 tfphn.setText(Phone);
+                  tfdept.setText(Department);
                  
              }
        });
@@ -235,10 +235,10 @@ public class stulist extends JFrame implements ActionListener  {
     public void actionPerformed(ActionEvent ae) {
      
         if(ae.getSource()==addButton){
-            rows[0] =tfId.getText();
-            rows[1] =tfName1.getText();
-            rows[2] =tfName2.getText();
-            rows[3] =tfPhone.getText();
+            rows[0] =tfname.getText();
+            rows[1] =tfid.getText();
+            rows[2] =tfphn.getText();
+            rows[3] =tfdept.getText();
             model.addRow(rows);
             
             
@@ -247,12 +247,12 @@ public class stulist extends JFrame implements ActionListener  {
             
         }
     
-        else  if(ae.getSource()==preAdvisingButton){
+        else  if(ae.getSource()==clearButton){
     
-          tfId.setText(""); 
-          tfName1.setText("");
-          tfName2.setText("");
-          tfPhone.setText("");
+          tfname.setText(""); 
+          tfid.setText("");
+          tfphn.setText("");
+          tfdept.setText("");
     }
         else if(ae.getSource() == deleteButton){
           int numberOfRow =  table.getSelectedRow();
@@ -269,10 +269,10 @@ public class stulist extends JFrame implements ActionListener  {
         else if(ae.getSource() == updateButton){
              int numberOfRow =  table.getSelectedRow();
              
-             String Name   = tfId.getText(); 
-             String ID    =    tfName1.getText();
-                String Phone = tfName2.getText();
-                   String Department =  tfPhone.getText();
+             String Name   = tfname.getText(); 
+             String ID    =    tfid.getText();
+                String Phone = tfphn.getText();
+                   String Department =  tfdept.getText();
                    
                    model.setValueAt(Name, numberOfRow, 0);
              model.setValueAt(ID, numberOfRow, 1);

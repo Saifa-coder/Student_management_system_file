@@ -42,9 +42,9 @@ public class stuinfo extends JFrame implements ActionListener  {
     private JScrollPane scroll;
     private DefaultTableModel model;
     private Container c;
-    private JLabel label, idLabel, firstNameLabel, lastNameLabel, phoneLabel;
-    private JTextField tfId, tfName1, tfName2, tfPhone;
-    private JButton addButton, updateButton, deleteButton, preAdvisingButton,txtButton;
+    private JLabel label, nameLabel, idLabel, triLabel, cgLabel;
+    private JTextField tfname, tfid, tftri, tfcg;
+    private JButton addButton, updateButton, deleteButton, clearButton,txtButton;
     
     private String[] columns = {"Name","ID","TRIMESTER","CGPA"};
     
@@ -75,15 +75,15 @@ public class stuinfo extends JFrame implements ActionListener  {
          label.setBounds(140,10,250,50);
          c.add( label);
          
-         idLabel = new JLabel("Name   ");
-         idLabel.setFont(font);
-         idLabel.setBounds(10,80,140,30);
-         c.add( idLabel);
+         nameLabel = new JLabel("Name   ");
+         nameLabel.setFont(font);
+         nameLabel.setBounds(10,80,140,30);
+         c.add( nameLabel);
          
-         tfId = new JTextField();
-         tfId.setFont(font);
-         tfId.setBounds(110,80,200,30);
-         c.add( tfId);
+         tfname = new JTextField();
+         tfname.setFont(font);
+         tfname.setBounds(110,80,200,30);
+         c.add( tfname);
          
          addButton = new JButton("Add");
          addButton.setFont(font);
@@ -93,15 +93,15 @@ public class stuinfo extends JFrame implements ActionListener  {
          
          
          
-         firstNameLabel = new JLabel("ID   ");
-         firstNameLabel.setFont(font);
-         firstNameLabel.setBounds(10,130,150,30);
-         c.add( firstNameLabel);
+         idLabel = new JLabel("ID   ");
+         idLabel.setFont(font);
+         idLabel.setBounds(10,130,150,30);
+         c.add( idLabel);
          
-         tfName1 = new JTextField();
-         tfName1.setFont(font);
-         tfName1.setBounds(110,130,200,30);
-         c.add( tfName1);
+         tfid = new JTextField();
+         tfid.setFont(font);
+         tfid.setBounds(110,130,200,30);
+         c.add( tfid);
          
          updateButton = new JButton("Update");
          updateButton.setFont(font);
@@ -109,15 +109,15 @@ public class stuinfo extends JFrame implements ActionListener  {
          c.add( updateButton);
          
          
-          lastNameLabel = new JLabel("Trimester   ");
-         lastNameLabel.setFont(font);
-         lastNameLabel.setBounds(10,180,150,30);
-         c.add( lastNameLabel);
+          triLabel = new JLabel("Trimester   ");
+         triLabel.setFont(font);
+         triLabel.setBounds(10,180,150,30);
+         c.add( triLabel);
          
-         tfName2 = new JTextField();
-         tfName2.setFont(font);
-         tfName2.setBounds(110,180,200,30);
-         c.add( tfName2);
+         tftri= new JTextField();
+         tftri.setFont(font);
+         tftri.setBounds(110,180,200,30);
+         c.add( tftri);
          
          deleteButton = new JButton("Delete");
          deleteButton.setFont(font);
@@ -125,20 +125,20 @@ public class stuinfo extends JFrame implements ActionListener  {
          c.add( deleteButton);
          
          
-          phoneLabel = new JLabel("CGPA");
-         phoneLabel.setFont(font);
-         phoneLabel.setBounds(10,230,150,30);
-         c.add( phoneLabel);
+          cgLabel = new JLabel("CGPA");
+         cgLabel.setFont(font);
+         cgLabel.setBounds(10,230,150,30);
+         c.add( cgLabel);
          
-         tfPhone = new JTextField();
-         tfPhone.setFont(font);
-         tfPhone.setBounds(110,230,200,30);
-         c.add( tfPhone);
+         tfcg = new JTextField();
+         tfcg.setFont(font);
+         tfcg.setBounds(110,230,200,30);
+         c.add( tfcg);
          
-         preAdvisingButton = new JButton("Clear");
-         preAdvisingButton.setFont(font);
-         preAdvisingButton.setBounds(400,230,100,30);
-         c.add( preAdvisingButton);
+         clearButton = new JButton("Clear");
+         clearButton.setFont(font);
+         clearButton.setBounds(400,230,100,30);
+         c.add( clearButton);
          
           txtButton = new JButton("Save");
          txtButton.setFont(font);
@@ -202,7 +202,7 @@ public class stuinfo extends JFrame implements ActionListener  {
          c.add(scroll);
          
          addButton.addActionListener(this);
-         preAdvisingButton.addActionListener(this);
+         clearButton.addActionListener(this);
          deleteButton.addActionListener(this);
          updateButton.addActionListener(this);
          
@@ -227,10 +227,10 @@ public class stuinfo extends JFrame implements ActionListener  {
                 String Trimester = model.getValueAt(numberOfRow, 2).toString();
                 String CGPA = model.getValueAt(numberOfRow, 3).toString();
                  
-                tfId.setText(Name);
-                 tfName1.setText(ID);
-                 tfName2 .setText(Trimester);
-                  tfPhone .setText(CGPA);
+                tfname.setText(Name);
+                 tfid.setText(ID);
+                 tftri.setText(Trimester);
+                  tfcg .setText(CGPA);
                  
              }
              
@@ -266,10 +266,10 @@ public class stuinfo extends JFrame implements ActionListener  {
     public void actionPerformed(ActionEvent ae) {
      
         if(ae.getSource()==addButton){
-            rows[0] =tfId.getText();
-            rows[1] =tfName1.getText();
-            rows[2] =tfName2.getText();
-            rows[3] =tfPhone.getText();
+            rows[0] =tfname.getText();
+            rows[1] =tfid.getText();
+            rows[2] =tftri.getText();
+            rows[3] =tfcg.getText();
             model.addRow(rows);
             
             
@@ -278,12 +278,12 @@ public class stuinfo extends JFrame implements ActionListener  {
             
         }
     
-        else  if(ae.getSource()==preAdvisingButton){
+        else  if(ae.getSource()==clearButton){
     
-          tfId.setText(""); 
-          tfName1.setText("");
-          tfName2.setText("");
-          tfPhone.setText("");
+          tfname.setText(""); 
+          tfid.setText("");
+          tftri.setText("");
+          tfcg.setText("");
     }
         else if(ae.getSource() == deleteButton){
           int numberOfRow =  table.getSelectedRow();
@@ -300,10 +300,10 @@ public class stuinfo extends JFrame implements ActionListener  {
         else if(ae.getSource() == updateButton){
              int numberOfRow =  table.getSelectedRow();
              
-             String Name   = tfId.getText(); 
-             String ID    =    tfName1.getText();
-                String Trimester = tfName2.getText();
-                   String CGPA =  tfPhone.getText();
+             String Name   = tfname.getText(); 
+             String ID    =    tfid.getText();
+                String Trimester = tftri.getText();
+                   String CGPA =  tfcg.getText();
                    
                    model.setValueAt(Name, numberOfRow, 0);
              model.setValueAt(ID, numberOfRow, 1);
